@@ -41,7 +41,7 @@ class WebsiteController extends Controller
         $categories = Category::orderBy('name', 'ASC')->get();
         $category_ids = PostCategory::where('post_id', $post->id)->pluck('category_id')->toArray();
         $posts = PostCategory::where('post_id', '!=', $post->id)->whereIn('category_id', $category_ids)->pluck('post_id')->toArray();
-        $relatedPosts = Post::whereIn('id', $posts)->limit(3)->get(); 
+        $relatedPosts = Post::whereIn('id', $posts)->limit(3)->get();
 
         return view('website.post_details', compact('post', 'relatedPosts', 'categories'));
     }
@@ -63,23 +63,23 @@ class WebsiteController extends Controller
      */
      public function aboutus(Request $request)
     {
-        
+
             return view('website.aboutus');
         }
  public function privacy(Request $request)
     {
-        
+
             return view('website.privacy');
         }
 public function archive(Request $request)
     {
-        
+
             return view('website.archive');
         }
 
  public function terms(Request $request)
     {
-        
+
             return view('website.terms');
         }
 
@@ -99,14 +99,14 @@ public function archive(Request $request)
             ]);
 
             if ($validator->fails()) {
-                if($request->ajax()){ 
+                if($request->ajax()){
                     return response()->json(['result' => 'error', 'message' => $validator->errors()->all()]);
                 }else{
                     return back()->withErrors($validator)->withInput();
-                }           
+                }
             }
-            
-            
+
+
             // $contact_message = new ContactMessage();
 
             // $contact_message->name = $request->name;
@@ -136,7 +136,7 @@ public function archive(Request $request)
         }
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -146,7 +146,5 @@ public function archive(Request $request)
         \Session::put('_lang', $lang);
         return back();
     }
-
-    
 
 }

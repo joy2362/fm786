@@ -27,17 +27,17 @@
     <link href="{{ asset('public/website') }}/assets/inews/themify-icons/themify-icons.css" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('public/website') }}/assets/inews/css/flaticon.css" rel="stylesheet" type="text/css" />
-    
 
+    <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
     <link href="{{ asset('public/website') }}/assets/inews/css/style.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" type="text/css" href="{{ asset('public/website') }}/assets/custom/css/dist/1589002489932.styles.css" />
     <link href="{{ asset('public/backend') }}/css/jquery.jConveyorTicker.min.css" rel="stylesheet">
-    
+
     <script src="{{ asset('public/website') }}/assets/inews/js/jquery.min.js" ></script>
-    
+
     <script>
-        setTimeout(function(){ 
+        setTimeout(function(){
     $('.se-pre-con').fadeOut("slow");
 }, 3000);
     </script>
@@ -59,10 +59,10 @@
             <div class="banner-holder" style="text-align:center; padding:5px 0;">
 
                          @if(get_option('advertisement_top_status', 0))
-    
+
                         {!! get_option('advertisement_top_content') !!}
-                   
-  
+
+
     @endif
             </div>
         </div>
@@ -70,10 +70,10 @@
     <div class="se-pre-con"></div>
 
     <header>
- 
-                      
+
+
         <div class="header-top">
-           
+
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
@@ -89,7 +89,7 @@
                             </ul>
                         </div></div>
 <style>
-  
+
     audio, canvas, progress, video {
     display: inline-block;
     vertical-align: baseline;
@@ -98,7 +98,7 @@
 }
 nav.navbar.bootsnav ul.nav>li>a {
     font-size: 16px;
-   
+
     border-right: 0px solid #fff;
 }
 nav.navbar.bootsnav ul.nav>li>a:hover {
@@ -186,14 +186,14 @@ footer {
     -moz-border-radius-bottomright: 50px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;">
-                            <?php 
+                            <?php
 $currentDate = date("l, j F, Y,");
 $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
 'May','June','July','August','September','October','November','December','Saturday','Sunday',
 'Monday','Tuesday','Wednesday','Thursday','Friday');
 $bangDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
 'May','June','July','August','September','October','November','December','Saturday','Sunday',
-'Monday','Tuesday','Wednesday','Thursday','Friday' 
+'Monday','Tuesday','Wednesday','Thursday','Friday'
 );
 $convertedDATE = str_replace($engDATE, $bangDATE, $currentDate);
 echo "$convertedDATE";
@@ -236,10 +236,10 @@ echo "$convertedDATE";
     @media (min-width:320px) and max-width:515px)
 
 {
-  
-  
+
+
  .p-t-5 {
-   
+
     padding-top: 5px;
     border: 1px solid #ed1c24 !important;
     background: #ed1c24;
@@ -259,7 +259,7 @@ echo "$convertedDATE";
     -moz-border-radius-bottomright: 50px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
-}   
+}
 }
 </style>
 <nav class="navbar navbar-default navbar-sticky navbar-mobile bootsnav">
@@ -277,9 +277,13 @@ echo "$convertedDATE";
 <div class="container no-padding">
 
 <div class="attr-nav">
-<ul>
-<li class="search"><a href="/google/search"><i class="fa fa-search"></i></a></li>
-</ul>
+    <form class="form-inline my-2 my-lg-0" method="post" action="{{url('search/post')}}">
+        @csrf
+        <input class="form-control mr-sm-2" type="text" name="search" id="searchText" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> <i class="fa fa-search"></i></button>
+    </form>
+
+
 </div>
 <div class="navbar-header">
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
@@ -291,24 +295,24 @@ echo "$convertedDATE";
 </div>
 
    @if(get_option('advertisement_menu_status', 0))
-    
+
                         {!! get_option('advertisement_menu_content') !!}
-  
+
     @endif
-                       
+
     <div class="navbar-header">
                                         <div class="m-logo hidden-sm hidden-md hidden-lg">
                         <a class="navbar-brand" href="{{ url('/') }}">
                             <img src="http://beta.fm786.com/public/uploads/images/logo.svg" class="logo" alt="FM786 is a Community News Network"></a>
                         <p class="p-t-5 m-b-0">
-                       <?php 
+                       <?php
 $currentDate = date("l, j F, Y,");
 $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
 'May','June','July','August','September','October','November','December','Saturday','Sunday',
 'Monday','Tuesday','Wednesday','Thursday','Friday');
 $bangDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
 'May','June','July','August','September','October','November','December','Saturday','Sunday',
-'Monday','Tuesday','Wednesday','Thursday','Friday' 
+'Monday','Tuesday','Wednesday','Thursday','Friday'
 );
 $convertedDATE = str_replace($engDATE, $bangDATE, $currentDate);
 echo "$convertedDATE";
@@ -316,11 +320,11 @@ echo "$convertedDATE";
 <?php
  $date = new DateTime('now', new DateTimeZone('America/New_York'));
  echo $date->format('H:i:A');
-?>    
+?>
                         </p>
                     </div>
                 </div>
-            
+
             </div>
         </nav>
 
@@ -352,24 +356,24 @@ echo "$convertedDATE";
                 <div class="col-sm-4 footer-box">
                     <div class="about-inner">
                           @if(get_option('advertisement_footer1_status', 0))
-    
+
                         {!! get_option('advertisement_footer1_content') !!}
-                   
-  
+
+
     @endif
-                       
+
                     </div>
                 </div>
                 <div class="col-sm-4 footer-box">
                     <div class="app-download-inner">
                           @if(get_option('advertisement_footer2_status', 0))
-    
+
                         {!! get_option('advertisement_footer2_content') !!}
-                   
-  
-    @endif 
-                            
-                       
+
+
+    @endif
+
+
  <div class="social-connect">
                             <ul class="social--redius social--color">
                                 <li><a data-fb="fb_link" class="social__facebook" title="Facebook" href="{{ get_option('facebook_link') }}"><i class="fa fa-facebook"></i></a></li>
@@ -428,12 +432,12 @@ echo "$convertedDATE";
     <div class="col-sm-4 footer-box">
                     <div class="app-download-inner">
                           @if(get_option('advertisement_fottermenu_status', 0))
-    
+
                         {!! get_option('advertisement_fottermenu_content') !!}
-                   
-  
-    @endif 
-                            
+
+
+    @endif
+
 
                 <div class="col-xs-12 col-sm-5 col-md-5">
                     </div>
@@ -463,6 +467,7 @@ echo "$convertedDATE";
 
     <script src="{{ asset('public/website') }}/assets/inews/js/custom.js"></script>
     <script src="{{ asset('public/website') }}/assets/inews/js/jquery.easy-ticker.js"></script>
+
     <style type="text/css">
         .bx-controls {
             display: none;
@@ -487,11 +492,11 @@ echo "$convertedDATE";
             initSlide('default-slider');
             initSlide('binodon-slider');
         });
-        
+
     </script>
     @yield('js-script')
 
- 
+
 </body>
 </html>
 
