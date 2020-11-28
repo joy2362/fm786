@@ -39,7 +39,7 @@ Route::group(['middleware' => ['install']], function () {
  Route::get('/config-cache', function() {
      $exitCode = Artisan::call('config:cache');
      return 'Config cache cleared';
- }); 
+ });
 
 // Clear application cache:
  Route::get('/clear-cache', function() {
@@ -55,20 +55,20 @@ Route::group(['middleware' => ['install']], function () {
  Route::any('theme_option', 'SettingsController@theme_option')->name('theme_option');
     //auth
     Route::group(['middleware' => ['auth']], function () {
-        
+
         //Profile Controller
         Route::get('profile/show', 'ProfileController@show')->name('profile.show');
         Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
         Route::post('profile/update', 'ProfileController@update')->name('profile.update');
         Route::get('password/change', 'ProfileController@password_change')->name('password.change');
         Route::post('password/update', 'ProfileController@update_password')->name('password.update');
-   
+
         //only admin
         Route::group(['middleware' => ['permission:admin']], function () {
 
             //Settings Controller
             Route::any('general_settings', 'SettingsController@general')->name('general_settings');
-         
+
             //Backup Controller
             Route::any('database_backup', 'BackupController@index')->name('database_backup');
             //Language Controller
@@ -85,7 +85,7 @@ Route::group(['middleware' => ['install']], function () {
         });
 
         //only editor
-        Route::group(['middleware' => ['permission:admin,editor']], function () { 
+        Route::group(['middleware' => ['permission:admin,editor']], function () {
 
             //Post Controller
             Route::resource('posts', 'PostController')->only(['index', 'create', 'store', 'edit', 'update']);
@@ -103,3 +103,9 @@ Route::get('install/create_user', 'Install\InstallController@create_user');
 Route::post('install/store_user', 'Install\InstallController@store_user');
 Route::get('install/system_settings', 'Install\InstallController@system_settings');
 Route::post('install/finish', 'Install\InstallController@final_touch');
+
+//search post
+Route::any('search/post', 'SearchController@search');
+//auto complete
+//Route::post('/autocomplete/fetch', 'SearchController@getAutocompleteData')->name('autocomplete.fetch');
+Route::get('api/item','SearchController@getAutocompleteData');
