@@ -20,7 +20,7 @@ Route::group(['middleware' => ['install']], function () {
     Route::any('aboutus', 'WebsiteController@aboutus');
     Route::any('privacyandpolicy', 'WebsiteController@privacy');
      Route::any('termsandconditions', 'WebsiteController@terms');
-      Route::any('archives', 'WebsiteController@archive');
+      Route::get('archives', 'WebsiteController@archive');
     Route::get('lang/{lang}', 'WebsiteController@set_lang');
 
     Auth::routes(['register' => false]);
@@ -109,3 +109,4 @@ Route::any('search/post', 'SearchController@search');
 //auto complete
 //Route::post('/autocomplete/fetch', 'SearchController@getAutocompleteData')->name('autocomplete.fetch');
 Route::get('api/item','SearchController@getAutocompleteData');
+Route::post('archives', 'SearchController@archive')->name('archive');

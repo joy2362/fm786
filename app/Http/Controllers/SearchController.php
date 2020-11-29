@@ -42,4 +42,9 @@ class SearchController extends Controller
             return  Post::where('slug','LIKE','%'.$request->term.'%')->where('status', 1)->get();
         }
     }
+
+    public function archive(Request $request){
+        $posts= Post::where('status',1)->whereDate('created_at',$request->date)->paginate(21);
+        return view('website.archive',compact('posts'));
+    }
 }

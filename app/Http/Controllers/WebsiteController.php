@@ -52,7 +52,7 @@ class WebsiteController extends Controller
        $post_ids = PostCategory::where('category_id', $category->id)->pluck('post_id')->toArray();
        $posts = Post::whereIn('id', $post_ids)->where('status', 1)->orderBy('id', 'DESC')->paginate(21);
        $categories = Category::orderBy('name', 'ASC')->get();
-       return view('website.posts_by_category', compact('category', 'posts', 'categories'));
+       return view('website.posts_by_category3', compact('category', 'posts', 'categories'));
     }
 
 
@@ -73,8 +73,9 @@ class WebsiteController extends Controller
         }
 public function archive(Request $request)
     {
-
-            return view('website.archive');
+        $posts= Post::where('status',1)->limit(10)->paginate(21);
+            //dd($posts);
+            return view('website.archive',compact('posts'));
         }
 
  public function terms(Request $request)

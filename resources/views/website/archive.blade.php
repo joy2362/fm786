@@ -16,12 +16,13 @@
     </div>
 </div>
 <!-- ##### Breadcrumb Area End ##### -->
+
 <main class="page_main_wrapper">
 
 <div class="container">
 </div>
 <section>
-    <!--
+
 <div class="container">
 <div class="row">
 <h1 class="page-title" style="text-align:center;">
@@ -31,15 +32,16 @@
 </div>
 </section>
 <section class="archive-news">
-<div class="container">
-<div class="row has-sidebar">
-<div class="col-md-9">
+    <div class="container">
+        <div class="row has-sidebar">
+
+            <div class="col-md-9">
 <div id="filter-form" class="">
 <div class="archive_form_area">
-<form action="" method="GET">
+<form action="{{route('archive')}}" method="POST">@csrf
 <div class="form-group">
 <label>দিন:</label>
-<input class="form-control date-picker" autocomplete="off" name="date" value="" placeholder="YY-MM-DD">
+<input class="form-control date-picker" type="date" autocomplete="off" name="date">
 </div>
 <div class="form-group col-md-4">
 <label>স্টেটঃ</label>
@@ -126,7 +128,7 @@
 </select>
 </div>
 <div class="form-group col-md-4">
-<label>বুরো/টাউনশিপঃ</label>
+<label>টাউনশিপঃ</label>
 <select name="upazila_id" id="upazila_select" class="form-control form-control-inline">
 <option district="34" value="1">আমতলী</option>
  <option district="34" value="2">বামনা</option>
@@ -622,35 +624,35 @@
 <option value="-1">বুরো/টাউনশিপ নেই</option>
 </select>
 </div>
--->
 
-                
-                
+
+
+
 <script type="text/javascript">
     var division = document.getElementById('division_select');
     var district = document.getElementById('district_select');
     var selectedDistrictId = -1;
     var selectedUpazilaId = -1;
 
-        
+
     // when used on site.
-    
-    
+
+
     division.addEventListener('change', function() {
         selectedDistrictId = -1;
-        filterDistricts(); 
+        filterDistricts();
     });
 
     district.addEventListener('change', function() {
         selectedUpazilaId = -1;
-        filterUpazilas(); 
+        filterUpazilas();
     });
 
-    filterDistricts(); 
+    filterDistricts();
 
     function filterDistricts() {
         var division_id = division.options[division.selectedIndex].value;
-        var district = document.getElementById('district_select'); 
+        var district = document.getElementById('district_select');
         var selectedIndex;
         for (var i = 0; i < district.options.length; i++ ) {
             var option = district.options[i];
@@ -671,7 +673,7 @@
 
     function filterUpazilas() {
         var district_id = district.options[district.selectedIndex].value;
-        var upazila = document.getElementById('upazila_select'); 
+        var upazila = document.getElementById('upazila_select');
         var selectedIndex;
         for (var i = 0; i < upazila.options.length; i++ ) {
             var option = upazila.options[i];
@@ -690,13 +692,178 @@
     }
 
 </script>
-<div class="form-group">
-
+<div class="form-group col-md-12 ">
+<input type="submit" class="btn btn-success" value="Submit">
 </div>
 </form>
-</div>
-</div>
 
 
+</div>
+</div>
+                <div class="section-title m-t-5 m-b-10">
+                    <h2>খবর</h2>
+                </div>
+                <div>
+                    @if(!$posts->isEmpty())
+                        <div class="post-items p-b-20 p-t-20 br-bottom">
+                            <div class="row">
+                                @foreach($posts as  $post)
+                                    @if(!$post->video_type)
+                                    <div class="post-item col-md-3 br-left" style="
+                            height: 200px;
+                            ">
+                                        <a href="{{ url('post', $post->slug) }}">
+                                            <figure>
+                                                <img src="{{ asset('public/uploads/images/posts/' . $post->getImage('medium') ) }}" width="130px" height="130px" alt="{{ $post->title }}">
+                                            </figure>
+                                            <h4 class="post-title " style="line-height: normal">{{ $post->title }}</h4>
+                                        </a><br>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
+                    @else
+                        {{ _lang('No Post Found!') }}
+                    @endif
+
+                </div>
+
+                @if(!$posts->isEmpty())
+                    <div class="pagination_links">
+                        <!-- Pagination -->
+                        {{ $posts->links() }}
+                    </div>
+                @endif
+
+</div>
+
+            <div class="col-md-3 sidebar">
+
+        @if(get_option('advertisement_one_status', 0))
+            <div class="advert" style="margin-bottom:5px; padding-top: 5px;">
+                <div class="row ">
+                    <div class="col-xs-12 p-t-10">
+                        <a class="post-item" href="{{ get_option('advertisement_one_link', '#') }}">
+                            <figure class="img-holder">
+                                {!! get_option('advertisement_one_content') !!}
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <div class="tabs-container p-t-10" style="height: 410px;">
+            <div class="tabs-wrapper">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a class="p-5" href="#latest" aria-controls="latest" role="tab" data-toggle="tab">
+                            <h3 class="no-margin no-padding">{{ _lang('Latest Post') }}</h3>
+                        </a></li>
+                    <li role="presentation">
+                        <a class="p-5" href="#popular" aria-controls="popular" role="tab" data-toggle="tab">
+                            <h3 class="no-margin no-padding">{{ _lang('Most Popular') }}</h3>
+                        </a></li>
+                </ul>
+                <div class="tab-content" style="overflow: scroll; height: 345px;overflow-x: hidden;">
+                    <div role="tabpanel" class="tab-pane fade in active" id="latest">
+                        <div class="most-viewed" id="latest">
+                            <div class="row mobile_list_simple ">
+                                @php
+                                    $posts = App\Post::orderBy('id', 'DESC')->limit(15)->get();
+                                @endphp
+                                @foreach($posts as $post)
+                                    <div class="col-xs-12 p-t-10 p-b-10 br-bottom item">
+                                        <a href="{{ url('post', $post->slug) }}">
+                                            <div class="title-holder">
+                                                <h3 class="post-title no-margin">{{ $post->title }}</h3>
+                                            </div>
+                                            <div class="category-meta">
+                                                <p class="category">
+                                                    @foreach($post->categories as $key => $category)
+                                                        {{ $category->category->name }}{{ $key != $post->categories->count() - 1 ? ',' : '' }}
+                                                    @endforeach
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="popular">
+                        <div class="most-viewed" id="most-today">
+                            <div class="row mobile_list_simple ">
+                                @php
+                                    $most_view_posts = App\Post::select("posts.*", "post_views.views")
+                                    ->join('post_views', 'posts.id', 'post_views.post_id')
+                                    ->orderBy('views', 'DESC')
+                                    ->limit(15)
+                                    ->get();
+                                @endphp
+                                @foreach($most_view_posts as $post)
+                                    <div class="col-xs-12 p-t-10 p-b-10 br-bottom item">
+                                        <a href="{{ url('post', $post->slug) }}">
+                                            <div class="title-holder">
+                                                <h3 class="post-title no-margin">{{ $post->title }}</h3>
+                                            </div>
+                                            <div class="category-meta">
+                                                <p class="category">
+                                                    @foreach($post->categories as $key => $category)
+                                                        {{ $category->category->name }}{{ $key != $post->categories->count() - 1 ? ',' : '' }}
+                                                    @endforeach
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-connect">
+            <ul class="social--redius social--color">
+                <li><a data-fb="fb_link" class="social__facebook" title="Facebook" href="{{ get_option('facebook_link') }}"><i class="fa fa-facebook"></i></a></li>
+                <li><a data-twitter="twitter_link" class="social__twitter" title="Twitter" href="{{ get_option('twitter_link') }}"><i class="fa fa-twitter"></i></a></li>
+                <li><a data-youtube="youtube_link" class="social__youtube" title="Youtube" href="{{ get_option('youtube_link') }}"><i class="fa fa-youtube"></i></a></li>
+                <li><a data-linkedin="linkedin_link" class="social__linkedin" title="Linkedin" href="{{ get_option('linkedin_link') }}"><i class="fa fa-linkedin"></i></a></li>
+                <li><a data-insta="insta_link" class="social__instagram" title="Instagram" href="{{ get_option('instagram_link') }}"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+        </div>
+        @if(get_option('advertisement_two_status', 0))
+            <div class="advert" style="margin-bottom:5px; padding-top: 5px;">
+                <div class="row ">
+                    <div class="col-xs-12 p-t-10">
+                        <a class="post-item" href="{{ get_option('advertisement_two_link', '#') }}">
+                            <figure class="img-holder">
+                                {!! get_option('advertisement_two_content') !!}
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+
+        @if(get_option('advertisement_three_status', 0))
+            <div class="advert" style="margin-bottom:20px; padding-top: 5px;">
+                <div class="row ">
+                    <div class="col-xs-12 p-t-10">
+                        <a class="post-item" href="{{ get_option('advertisement_three_link', '#') }}">
+                            <figure class="img-holder">
+                                {!! get_option('advertisement_three_content') !!}
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
+    </div>
+        </div>
+    </div>
+</section>
 @endsection
 
