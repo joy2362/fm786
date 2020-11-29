@@ -73,14 +73,14 @@
             <div class="post-metas">
                 <div class="items bg-grey edited-item">
                     <div class="item">
-                         <?php 
+                         <?php
 $currentDate = date("d F Y, h:i:s A");
 $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
 'May','June','July','August','September','October','November','December','Saturday','Sunday',
 'Monday','Tuesday','Wednesday','Thursday','Friday');
 $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
 'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-বুধবার','বৃহস্পতিবার','শুক্রবার' 
+বুধবার','বৃহস্পতিবার','শুক্রবার'
 );
 $convertedDATE = str_replace($engDATE, $bangDATE, $currentDate);
 echo "$convertedDATE";
@@ -88,11 +88,11 @@ echo "$convertedDATE";
                     </div>
                     <div class="item">
                         <div class="post-metas">
-                          
+
                      <img src="{{ asset('public/uploads/images/posts/reporter/' . $post->getImage('small') ) }}" alt="">
                  <img src="{{ asset('public/uploads/images/reporter/' . $post->getImage2('small') ) }}" alt="" style="width:9%;">   রিপোর্টারঃ {{ $post->reporter_name }}                  |   সংবাদ প্রকাশিত সময়ঃ
    <time datetime="{{ $post->created_at }}">{{ date('d M, Y | h:i A', strtotime($post->created_at)) }} </time>
-     
+
                         </div>
                     </div>
                     <div class="item">
@@ -118,14 +118,14 @@ echo "$convertedDATE";
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
                 <div class="addthis_inline_share_toolbox"></div>
-            
+
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-middle p-10">
             <div class="single-post-content">
-                
+
                 <div class="m-top-meta">
                     <div class="col-sm-7 p-l-0">
                         <div class="item">
@@ -153,7 +153,7 @@ echo "$convertedDATE";
                     </div>
                 </div>
                 <div class="title-holder m-b-20">
-                 
+
  @if(get_option('advertisement_posttop_status', 0))
  <div class="col-xs-12 p-t-10">
                                     <a class="post-item" href="{{ get_option('advertisement_posttop_link', '#') }}">
@@ -165,7 +165,7 @@ echo "$convertedDATE";
                 </div>
                 <div class="title-holder m-b-20">
                     <h1 class="title m-b-20">{{ $post->title }}     </h1>
- 
+
                 </div>
                 <figure class="img-holder">
                     @if($post->video_type == '')
@@ -173,7 +173,7 @@ echo "$convertedDATE";
                     @endif
                     <p class="img-caption img-layer-thumb m-b-0">{{ $post->title }}</p>
                 </figure>
-                
+
                 <div class="m-bottom-meta">
                     <div class="item">
                         <ul>
@@ -186,7 +186,7 @@ echo "$convertedDATE";
                             <div class="fb-save" data-uri="#" data-size="large"></div>
                         </div>
                     </div>
-                  
+
 
                     <div class="item">
                         <div class="fb-share-button" data-href="#" data-layout="button_count" data-size="large"></div>
@@ -201,8 +201,8 @@ echo "$convertedDATE";
                         <iframe width="100%" height="380px" src="//player.vimeo.com/video/{{ get_video_id($post->video_url) }}?title=0&byline=0&portrait=0&badge=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         @elseif($post->video_type == 'facebook')
                         <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/watch/?v=338784757312497&show_text=false&width=734&height=734&appId" width="100%" style="border:none;overflow:hidden; min-height: 500px;" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>
-                        
-                        
+
+
                         @endif
                 </div>
                   @if(get_option('advertisement_postbottom_status', 0))
@@ -223,13 +223,13 @@ echo "$convertedDATE";
                 </div>
             </div>
 
- 
-                          
+
+
             <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=1016311991716755&autoLogAppEvents=1" nonce="p87kihQW"></script>
 <h4 style="background: #780d0d;padding: 15px;color: #fff;margin:-1px -1px 0;">আপনার মতামত লিখুন :
 </h4>
-<div class="fb-comments" data-href="http://beta.fm786.com" data-numposts="5" data-width=""></div>
+<div class="fb-comments" data-href="http://beta.fm786.com/{{$post->title}}" data-numposts="5" data-width=""></div>
         </div>
         <div class="col-right no-padding">
             <div class="sidebar">

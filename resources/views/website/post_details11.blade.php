@@ -17,7 +17,7 @@
    nav.navbar.bootsnav ul.nav>li>a {
     font-size: 15px;
     border-right: 0px solid #fff;
-}              
+}
     .entry-content p {
     font-size: 18px;
     text-align: justify;
@@ -42,8 +42,8 @@
 .m-b-20 {
     /* margin-bottom: 20px; */
 }
-  
-  
+
+
 }
 .p-t-51 {
     padding-top: 5px;
@@ -73,22 +73,22 @@
     list-style: none;
     margin: 0;
 }
-  
-  @media only screen and (max-width: 600px) and (min-width: 320px) 
-  
+
+  @media only screen and (max-width: 600px) and (min-width: 320px)
+
   {
     .p-t-51, .logo img{
       display:none;
-      
+
     }
      p img {
     width: 100% !important;
-}  
-    
+}
+
     img {
     width: 100% !IMPORTANT;
 }
-    
+
     .breadcrumb {
     background: #f3e5e5;
     font-size: 13px;
@@ -100,7 +100,7 @@
     .wrap-sticky {
     margin-bottom: 5em;
 }
-    
+
     .navbar-brand {
     float: left;
 height: 10px;
@@ -114,7 +114,7 @@ height: 10px;
     font-size: 46px;
     color: #ff0000;
 }
-    
+
  nav.navbar .navbar-brand img.logo {
     width: 80%;
     margin-left: -6px;
@@ -123,9 +123,9 @@ height: 10px;
  nav.navbar.navbar-default {
     background-color: #fff!important;
     padding: .4em;
-}   
+}
   }
-  
+
     </style>
 <div class="container">
 </div>
@@ -154,14 +154,14 @@ height: 10px;
         <div class="col-left col-left hidden-xs hidden-sm p-t-20">
             <div class="post-metas">
                 <div class="items bg-grey edited-item">
-                  
+
                     <div class="item">
                         <div class="post-metas">
-                          
+
                      <img src="{{ asset('public/uploads/images/posts/reporter/' . $post->getImage('small') ) }}" alt="">
                  <img src="{{ asset('public/uploads/images/reporter/' . $post->getImage2('small') ) }}" alt="" style="width:9%;"><b>{{ $post->meta_tags }}</b> <br>&nbsp;সংবাদ প্রকাশিত<br>
    &nbsp;<time datetime="{{ $post->created_at }}">{{ date('d M, Y', strtotime($post->created_at)) }} </time>
-     
+
                         </div>
                     </div>
                     <div class="item">
@@ -186,10 +186,10 @@ height: 10px;
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
                 <div class="addthis_inline_share_toolbox"></div>
-            
+
                     </div>
                 </div>
-            </div>  
+            </div>
           @if(get_option('advertisement_left1_status', 0))
                 <div class="advert" style="margin-bottom:5px; padding-top: 5px;">
                     <div class="row ">
@@ -203,7 +203,7 @@ height: 10px;
                     </div>
                 </div>
                 @endif
-          
+
             {!! $post->left1_body !!}
           <br>@if(get_option('advertisement_left2_status', 0))
                 <div class="advert" style="margin-bottom:5px; padding-top: 5px;">
@@ -218,8 +218,8 @@ height: 10px;
                     </div>
                 </div>
                 @endif
-          
-          
+
+
            {!! $post->left2_body !!}
           <br>
           @if(get_option('advertisement_left3_status', 0))
@@ -248,11 +248,11 @@ height: 10px;
                     </div>
                 </div>
                 @endif
-          
+
         </div>
         <div class="col-middle p-10">
             <div class="single-post-content">
-                
+
                 <div class="m-top-meta">
                     <div class="col-sm-7 p-l-0">
                         <div class="item">
@@ -280,7 +280,7 @@ height: 10px;
                     </div>
                 </div>
                 <div class="title-holder m-b-20">
-                 
+
  @if(get_option('advertisement_posttop_status', 0))
  <div class="col-xs-12 p-t-10">
                                     <a class="post-item" href="{{ get_option('advertisement_posttop_link', '#') }}">
@@ -292,7 +292,7 @@ height: 10px;
                 </div>
                 <div class="title-holder m-b-20">
                     <h1 class="title m-b-20">{{ $post->title }}     </h1>
- 
+
                 </div>
                 <figure class="img-holder">
                     @if($post->video_type == '')
@@ -300,7 +300,7 @@ height: 10px;
                     @endif
                     <p class="img-caption img-layer-thumb m-b-0">{{ $post->meta_description }}</p>
                 </figure>
-                
+
                 <div class="m-bottom-meta">
                     <div class="item">
                         <ul>
@@ -313,7 +313,7 @@ height: 10px;
                             <div class="fb-save" data-uri="#" data-size="large"></div>
                         </div>
                     </div>
-                  
+
 
                     <div class="item">
                         <div class="fb-share-button" data-href="#" data-layout="button_count" data-size="large"></div>
@@ -328,8 +328,8 @@ height: 10px;
                         <iframe width="100%" height="380px" src="//player.vimeo.com/video/{{ get_video_id($post->video_url) }}?title=0&byline=0&portrait=0&badge=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         @elseif($post->video_type == 'facebook')
           <iframe src="https://www.facebook.com/plugins/video.php?href={{ get_video_id($post->video_url) }}show_text=false&width=734&height=734&appId" width="100%" style="border:none;overflow:hidden; min-height: 500px;" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>
-                        
-                        
+
+
                         @endif
                 </div>
                   @if(get_option('advertisement_postbottom_status', 0))
@@ -350,13 +350,13 @@ height: 10px;
                 </div>
             </div>
 
- 
-                          
+
+
             <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=1016311991716755&autoLogAppEvents=1" nonce="p87kihQW"></script>
 <h4 style="background: #780d0d;padding: 15px;color: #fff;margin:-1px -1px 0;">আপনার মতামত লিখুন :
 </h4>
-<div class="fb-comments" data-href="http://beta.fm786.com" data-numposts="5" data-width=""></div>
+<div class="fb-comments" data-href="http://beta.fm786.com/{{$post->title}}" data-numposts="5" data-width=""></div>
         </div>
         <div class="col-right no-padding">
             <div class="sidebar">
@@ -374,7 +374,7 @@ height: 10px;
                 </div>
                 @endif
                {!! $post->right1_body !!}
-             
+
                 <div class="tabs-container p-t-10" style="height: 410px;">
                     <div class="tabs-wrapper">
                         <ul class="nav nav-tabs" role="tablist">
@@ -469,19 +469,19 @@ height: 10px;
                         <li><a data-insta="insta_link" class="social__instagram" title="Instagram" href="{{ get_option('instagram_link') }}"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                 </div>
-                   
-                 
-               
+
+
+
                 <div class="advert" style="margin-bottom:5px; padding-top: 5px;">
                     <div class="row ">
                         <div class="col-xs-12 p-t-10">
-                            
+
                         </div>
                     </div>
                 </div>
-                
 
-                <div class="ac" style="padding-top: 1em;"> 
+
+                <div class="ac" style="padding-top: 1em;">
                   @if(get_option('advertisement_right2_status', 0))
                 <div class="advert" style="margin-bottom:5px; padding-top: 5px;">
                     <div class="row ">
@@ -495,7 +495,7 @@ height: 10px;
                     </div>
                 </div>
                 @endif
-          
+
                     <div class="archive_holder">
                         <div class="archive_title">
                             <h3><a href="#">{{ _lang('Calendar') }}</a></h3>
@@ -594,7 +594,7 @@ height: 10px;
                         </div>
                     </div>
                 </div>
-                @endif 
+                @endif
             </div>
         </div>
     </div>
