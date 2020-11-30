@@ -37,9 +37,11 @@ class SearchController extends Controller
         }
 
     }
-    public function getAutocompleteData(Request $request){
-        if($request->has('term')){
-            return  Post::where('slug','LIKE','%'.$request->term.'%')->where('status', 1)->get();
+    public function getAutocompleteData($text){
+
+        if($text){
+            $post=Post::where('slug','LIKE','%'.$text.'%')->where('status', 1)->pluck('title')->toArray();
+            return response()->json($post);
         }
     }
 

@@ -107,6 +107,6 @@ Route::post('install/finish', 'Install\InstallController@final_touch');
 //search post
 Route::any('search/post', 'SearchController@search');
 //auto complete
-//Route::post('/autocomplete/fetch', 'SearchController@getAutocompleteData')->name('autocomplete.fetch');
-Route::get('api/item','SearchController@getAutocompleteData');
+//Route::post('autocomplete/fetch', 'SearchController@getAutocompleteData')->name('autocomplete.fetch');
+Route::get('autocomplete/fetch/{text}', 'SearchController@getAutocompleteData')->name('autocomplete.fetch');
 Route::post('archives', 'SearchController@archive')->name('archive');
