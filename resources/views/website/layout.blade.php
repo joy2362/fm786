@@ -280,12 +280,8 @@ echo "$convertedDATE";
     <form class="form-inline my-2 my-lg-0" method="post" action="{{url('search/post')}}">
         @csrf
         <input class="form-control mr-sm-2" type="text" name="search" id="searchText" placeholder="Search" aria-label="Search">
-        <div id="postList">
-        </div>
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> <i class="fa fa-search"></i></button>
     </form>
-
-    {{ csrf_field() }}
 
 </div>
 <div class="navbar-header">
@@ -485,24 +481,15 @@ echo "$convertedDATE";
                 let query = $(this).val();
                 if(query != '')
                 {
-                    var _token = $('input[name="_token"]').val();
-
                     $.ajax({
                         url:"{{ url('autocomplete/fetch') }}/"+query,
                         method:"get",
 
                         success:function(data){
                             console.log(data);
-                            $('#postList').fadeIn();
-                            $('#postList').html(data);
                         }
                     });
                 }
-            });
-
-            $(document).on('click', 'li', function(){
-                $('#searchText').val($(this).text());
-                $('#postList').fadeOut();
             });
 
         });
